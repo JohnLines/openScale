@@ -1,0 +1,92 @@
+<h1>Adding the iHealth HS3 scale to openScale</h1>
+
+
+This site contains information pertinent to adding the HS3 scale to openScale
+
+<h2>Information about the HS3 scale</h2>
+
+The scale has a switch underneath which selects whether the display should be in
+Kg, Lb, or St - Most of the logs were captured with it in the Kg position, but I
+have noted where the setting was different. The display given in the iHealth app is
+always in the weight units set in the app.
+
+<p>
+
+<h3>Information from Linux bluetoothctl programme</h3>
+
+<pre>
+[bluetooth]# scan on
+Discovery started
+[CHG] Controller 00:11:67:89:4C:CD Discovering: yes
+[NEW] Device 8C:DE:52:13:FA:4A 8C-DE-52-13-FA-4A
+[CHG] Device 8C:DE:52:13:FA:4A LegacyPairing: no
+[CHG] Device 8C:DE:52:13:FA:4A RSSI: 127
+[CHG] Device 8C:DE:52:13:FA:4A Name: iHealth HS33FA4A
+[CHG] Device 8C:DE:52:13:FA:4A Alias: iHealth HS33FA4A
+[CHG] Device 8C:DE:52:13:FA:4A LegacyPairing: yes
+[CHG] Device 8C:DE:52:13:FA:4A RSSI is nil
+
+[bluetooth]# info 8C:DE:52:13:FA:4A
+Device 8C:DE:52:13:FA:4A
+Name: iHealth HS33FA4A
+Alias: iHealth HS33FA4A
+Class: 0x240404
+Icon: audio-card
+Paired: no
+Trusted: no
+Blocked: no
+Connected: no
+LegacyPairing: yes
+
+[bluetooth]# pair 8C:DE:52:13:FA:4A
+Attempting to pair with 8C:DE:52:13:FA:4A
+[CHG] Device 8C:DE:52:13:FA:4A Connected: yes
+[CHG] Device 8C:DE:52:13:FA:4A Modalias: bluetooth:v0039p5035d0120
+[CHG] Device 8C:DE:52:13:FA:4A UUIDs: 00000000-deca-fade-deca-deafdecacaff
+[CHG] Device 8C:DE:52:13:FA:4A UUIDs: 00001101-0000-1000-8000-00805f9b34fb
+[CHG] Device 8C:DE:52:13:FA:4A UUIDs: 00001200-0000-1000-8000-00805f9b34fb
+[CHG] Device 8C:DE:52:13:FA:4A ServicesResolved: yes
+[CHG] Device 8C:DE:52:13:FA:4A Paired: yes
+Pairing successful
+[CHG] Device 8C:DE:52:13:FA:4A ServicesResolved: no
+[CHG] Device 8C:DE:52:13:FA:4A Connected: no
+[bluetooth]# info 8C:DE:52:13:FA:4A
+Device 8C:DE:52:13:FA:4A
+Name: iHealth HS33FA4A
+Alias: iHealth HS33FA4A
+Class: 0x240404
+Icon: audio-card
+Paired: yes
+Trusted: no
+Blocked: no
+Connected: no
+LegacyPairing: yes
+UUID: Vendor specific           (00000000-deca-fade-deca-deafdecacaff)
+UUID: Serial Port               (00001101-0000-1000-8000-00805f9b34fb)
+UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
+Modalias: bluetooth:v0039p5035d0120
+
+</pre>
+
+
+<h2>BT Snoop Log files</h2>
+
+<ul>
+	<li><a href="logs/btsnoop_hci-77-2.log">btsnoop_hci-77-2.log</a> - weight 77.2 Kg, taken at Jan 29 07:46</li>
+	<li><a href="logs/btsnoop_hci-76-2.log">btsnoop_hci-76-2.log</a> - weight 76.2 Kg, taken at Jan 29 07:34</li>
+	<li><a href="logs/btsnoop_hci-78-6.log">btsnoop_hci-78-6.log</a> - weight 78.6 Kg, taken at Jan 29 07:37</li>
+	<li><a href="logs/btsnoop_hci-1715-lb.log">btsnoop_hci-1715-lb.log</a> - scales set to lb, weight 1715 lb on scale, 77.8 Kg, taken at Jan 30 07:40</li>
+	<li><a href="logs/btsnoop-12st-32lb.log">btsnoop-12st-32lb.log</a> - scales set to st, weight 12:32 on scale, 77.7 Kg, taken at btsnoop-12st-32lb.log</li>
+	<li><a href="logs/btsnoop_hci-77-1.log">btsnoop_hci-77-1.log</a> - weight 77.1 Kg, taken Feb  2 07:02</li>
+
+</ul>
+
+Searching the log files with wireshark shows that the weight in Kg, st, or lb - with, for example 76.2 kg being taken as a reading of 762, decimal, which would give 02FA, or FA02, does not show up in the data stream.
+<p>
+It does not seem to be in 50g units, either.
+<p>
+There do not appear to be ASCII "AT" commands in the stream.
+<p>
+Work in decoding the data still in progress, any suggestions would be welcomed.
+
+

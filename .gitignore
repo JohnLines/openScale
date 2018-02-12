@@ -24,7 +24,8 @@ local.properties
 proguard/
 
 # Log Files
-*.log
+#  I will allow log files as I want to put them into docs
+# *.log
 
 # Android Studio
 *.iml
