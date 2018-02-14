@@ -90,3 +90,138 @@ There do not appear to be ASCII "AT" commands in the stream.
 Work in decoding the data still in progress, any suggestions would be welcomed.
 
 
+
+<h3>btsnoop_hci-77-2.log</h3>
+
+<pre>
+Packet 135 - first one sent from localhost to scales - L2CAP - Information request
+
+Packet 159 - scales to localhost - response - extended feasures mask - result (0x00100)
+
+Packets 177 to 184 0 seems to be allocating channel 0x0040
+
+Packet 186 - scales to localhost - Service Search request for Serial Port 0x1101
+Packet 187 - localhost to scales - SDP reposonse
+
+Packet 332 - localhost to scales - SPP - Data b0 03 a6 23 01 ca    (could this be 'send me your data' ??)
+
+Packet 334 - scales to localhost - SPP - Data a0 03 a6 ff 01 a6    (maybe 'here comes the data')
+Packet 335 - scales to localhost - SPP - Data a0 09 a6 33 00 18 01 29 07 39 16 71   (this is the date
+
+Packet 336 - localhost to scales - SPP - Data - b0 03 a6 ff 01 a6   (acknowlegement of packet 334
+
+Packet 339 - scales to localhost - SPP - Data - a0 13 a6 32 01 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff c9
+
+</pre>
+
+<h3>btsnoop_hci-77-1.log</h3>
+
+
+<pre>
+Packet 86 - first one sent from localhost to scales - L2CAP - information request - 
+
+Packet 110 - scales to localhost - response - extended feasures mask - result (0x00100)
+
+Packets 113 to 116 - seems to be allocating channel 0x0041
+
+Packet 161 - localhost to scales - RFCOMM - channel 0 to channel 6 - V.24 RTC and RTR
+Packet 163 - scales to localhost - RFCOMM - channel 0 to channel 6 - V.24 RTC and RTR
+
+Packet 172 - localhost to scales - SPP - Data b0 03 a6 23 01 ca
+
+Packet 174 - scales to localhost - SPP - Data a0 03 a6 ff 01 a6
+Packet 175 - scales to localhost - SPP - Data a0 09 a6 33 00 18 02 02 06 56 18 69   (date and time)
+
+Packet 176 - localhost to scales - SPP - Data b0 03 a6 ff 01 a6   (looks like an acknowlegement of packet 174)
+
+Packet 179 - scales to localhost - SPP - Data - a0 13 a6 32 01 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff c9  (identical to packet 339 in 77-2 log)
+
+
+Packet 243 - scales to localhost SPP - Data a0 09 a6 28 05 48 84 6e 11 07 71 96   ( 
+
+
+</pre>
+
+
+<h3>btsnoop_hci-78-6.log</h3>
+
+
+
+<pre>
+
+Packet 285 scales to localhost - SPP - Data a0 09 a6 33 00 18 01 29 07 36 17 6f
+
+Packet 296 localhost to scales - SPP - Data b0 09 a6 25 05 12 01 1c 09 02 34 3e
+
+
+Packet 298 scales to localhost - SPP - Data a0 03 a6 ff 05 aa
+Packet 299 scales to localhost - SPP - Data a0 04 a6 26 02 10 de
+
+Packet 303 localhost to scales - SPP - Data b0 06 a6 27 04 00 00 00 d2
+Packet 305 scales to localhost - SPP - Data a0 03 a6 ff 05 aa
+
+Packet 306 payload length is 118 - 
+Packet 306 scales to localhost - SPP - Data a0 73 a6 21 03 48 7a 78 53 07 62 0f 48 78 90 b4 07 80
+   
+Packet 307 localhost to scales - SPP - Data b0 03 a6 ff 04 a9  
+
+
+Packet 376 scales to localhost - SPP - data a0 09 a6 28 04 48 7a 1b 07 86 b5   (This starts with the a0 09 a6 like time, but then has sequence number ??_
+
+</pre>
+
+<h3>btsnoop_hci-76-2.log</h3>
+
+
+
+<pre>
+
+Packet 262 - localhost to scales - SPP - Data b0 03 a6 23 01 ca
+Packet 264 - scales to localhost - SPP - Data 0a 03 a6 ff 01 a6
+Packet 265 - scales to localhost - SPP - Data a0 09 a6 33 00 18 01 29 07 33 07 5c
+
+
+
+
+</pre>
+
+
+<h2>Time packets Type 33</h2>
+
+Comparing packets 335  from 77-2 log and 175 from 77-1 log and 285 from 78-6 - all start 'a0 09 a6 33 00 18'
+<p>
+
+Then for the 77-1 log we have 02 02 06 56 18 69 - which is different from the others - was taken on a different day - these are dates ! 2nd Feb - 
+<p>
+and for the 77-2 log we have 01 29 07 39 16 71  - Jan 29 at 07:39
+<p>
+and for the 78-6 log we have 01 29 07 36 17 6f  - Jan 29 at 07:36
+<p>
+and for the 76-2 log we have 01 29 07 33 07 5c  - Jan 29 at 07:33
+
+
+<p>
+The 18 in these packets is presumably 2018 - so the rest probably just says the time is on its way
+
+
+<h2>Type 28 packets</h2>
+
+Packets from the scales which start a0 09 a6 28
+
+<pre>
+
+77-1 log                   - 05 48 84 6e 11 07 71 96
+
+77-2 log                   - 04 48 7a 79 d9 09 05 f4
+
+76-2 log                   - 04 48 7a 78 53 07 62 c8
+
+78-6 log                   - 04 48 7a 79 1b 07 86 b5
+
+12st-32lb log (packet 409) - 05 48 7c 82 86 07 77 1d
+
+12st-32lb log (packet 555) - 06 48 7c 82 9e 07 77 36
+
+</pre>
+
+
