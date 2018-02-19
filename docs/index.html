@@ -12,6 +12,8 @@ always in the weight units set in the app.
 
 <p>
 
+
+
 <h3>Information from Linux bluetoothctl programme</h3>
 
 <pre>
@@ -78,6 +80,7 @@ Modalias: bluetooth:v0039p5035d0120
 	<li><a href="logs/btsnoop_hci-1715-lb.log">btsnoop_hci-1715-lb.log</a> - scales set to lb, weight 1715 lb on scale, 77.8 Kg, taken at Jan 30 07:40</li>
 	<li><a href="logs/btsnoop-12st-32lb.log">btsnoop-12st-32lb.log</a> - scales set to st, weight 12:32 on scale, 77.7 Kg, taken at btsnoop-12st-32lb.log</li>
 	<li><a href="logs/btsnoop_hci-77-1.log">btsnoop_hci-77-1.log</a> - weight 77.1 Kg, taken Feb  2 07:02</li>
+        <li><a href="logs/btsnoop_hci-76-0_77-1.log">logs/btsnoop_hci-76-0_77-1.log</a> - weight 76.0 and 77.1, taken Feb 15 07:02</li> 
 
 </ul>
 
@@ -204,7 +207,7 @@ and for the 76-2 log we have 01 29 07 33 07 5c  - Jan 29 at 07:33
 The 18 in these packets is presumably 2018 - so the rest probably just says the time is on its way
 
 
-<h2>Type 28 packets</h2>
+<h2>Weight packets Type 28</h2>
 
 Packets from the scales which start a0 09 a6 28
 
@@ -223,5 +226,14 @@ Packets from the scales which start a0 09 a6 28
 12st-32lb log (packet 555) - 06 48 7c 82 9e 07 77 36
 
 </pre>
+
+The weight values are the penultimate 2 bytes, as decimal values in 1/10 kg. (spotted by olixdev), i.e.
+from 77-1 log the two byes are 07 and 71
+<p>
+The last byte is probably a checksum.
+<p>
+77-2 log appears to be an anomoly, which will require a little more investigation.
+
+
 
 
